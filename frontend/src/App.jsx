@@ -1,12 +1,16 @@
-import Home  from "./SmallJobsHome/home/Home";
+import { Routes, Route } from "react-router-dom";
+import Home  from "@/SmallJobsHome/home/Home";
+import Catalog from "@/SmallJobsHome/catalog/Catalog";
+
 
 function App() {
 
 
   return (
-    <div>
-      <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/catalog" element={<Catalog />} />
+    </Routes>
   );
 }
 
