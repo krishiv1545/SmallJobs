@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react"
 import "./home.css"
 import Footer from '@/Base/Footer';
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -52,7 +53,7 @@ function Home() {
         <h1>SmallJobs</h1>
         <div className="hr"></div>
         <ul>
-          <li><a href="#">Application Catalog</a></li>
+          <li><Link to="/catalog" className="nav-link">Application Catalog</Link></li>
           {/* <li><a href="#">CS 101 Community</a></li>
           <li><a href="#">Grow (To-do)</a></li> */}
         </ul>
