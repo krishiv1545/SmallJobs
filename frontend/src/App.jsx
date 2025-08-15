@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home  from "@/SmallJobsHome/home/Home";
+import Home from "@/SmallJobsHome/home/Home";
 import Catalog from "@/SmallJobsHome/catalog/Catalog";
 import HangOutHome from "@/HangOut/home/Home";
 import Room from "@/HangOut/room/Room";
-
 
 function App() {
   return (
