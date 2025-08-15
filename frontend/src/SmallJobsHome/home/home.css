@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #888;
+  background-color: #100c08;
 }
 
 .home {
@@ -18,39 +18,14 @@ body {
   align-items: center;
   flex-direction: row;
   padding: 5px;
-  /* background-color: #000a13; */
-  background-color: rgb(19, 0, 0, 0.5);
+  background-color: #999;
   position: relative;
   overflow: hidden;
 }
 
-.home::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    var(--angle, -45deg),
-    transparent 0%,
-    transparent 20%,
-    rgba(255, 255, 255, 0.05) 35%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.15) 50%,  /* Peak brightness */
-    rgba(255, 255, 255, 0.15) 55%,
-    rgba(255, 255, 255, 0.05) 65%,
-    transparent 80%,
-    transparent 100%
-  );
-  transform-origin: center center;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  pointer-events: none;
-}
-
 /* Alternative with multiple light rays */
 .home::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -60,19 +35,20 @@ body {
     calc(var(--angle, -45deg)),
     transparent 0%,
     transparent 25%,
-    rgba(255, 0, 0, 0.2) 30%,
-    rgba(0, 150, 255, 0.5) 40%,
-    rgba(255, 255, 255, 0.5) 50%,
-
-    rgba(0, 150, 255, 0.5) 60%,
-    rgba(255, 0, 0, 0.5) 90%,
+    rgba(255, 0, 0, 0.7) 20%,
+    rgba(0, 150, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(0, 150, 255, 0.7) 60%,
+    rgba(255, 0, 0, 0.7) 80%,
 
     transparent 75%,
     transparent 100%
   );
+  filter: blur(50px);
   pointer-events: none;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 0.7;
+  /* animation: flickerAmbient 4s ease-in-out infinite; */
 }
 
 .box {
@@ -186,7 +162,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 20px;
+  padding-inline: 40px;
 }
 
 .navbar-text {
@@ -234,4 +210,45 @@ body {
 .vertical-center {
   display: flex;
   align-items: center;
+}
+
+@keyframes flickerAmbient {
+  0%,
+  100% {
+    opacity: 0.6;
+    filter: blur(1px) brightness(1);
+  }
+  25% {
+    opacity: 0.5;
+    filter: blur(1.2px) brightness(1.05);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1.1px) brightness(0.95);
+  }
+  75% {
+    opacity: 0.6;
+    filter: blur(1px) brightness(1.02);
+  }
+}
+
+.auth-btn {
+  padding: 10px 20px;
+  margin-inline: 5px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.1rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.auth-btn:active {
+  transform: scale(0.96);
+}
+
+.signup-btn {
+  margin-left: 40px;
 }

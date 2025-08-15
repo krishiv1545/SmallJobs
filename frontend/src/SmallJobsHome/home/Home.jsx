@@ -53,7 +53,7 @@ function Home() {
         <h1>SmallJobs</h1>
         <div className="hr"></div>
         <ul>
-          <li><Link to="/catalog" class="nav-link">Application Catalog</Link></li>
+          <li><Link to="/catalog" className="nav-link">Application Catalog</Link></li>
           {/* <li><a href="#">CS 101 Community</a></li>
           <li><a href="#">Grow (To-do)</a></li> */}
         </ul>

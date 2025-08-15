@@ -1,0 +1,114 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5rem 4rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  z-index: 1001;
+  display: none;
+  min-width: 450px;
+  max-width: 90vw;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.open-modal {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.auth-form input {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+}
+
+.auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-form button {
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: rgba(207, 27, 27, 0.358);
+  border: 1px solid rgba(255, 31, 31, 0);
+  transition: all 0.3s ease;
+}
+
+.auth-form button:hover {
+  background: rgba(178, 58, 58, 0.208);
+  border: 1px solid rgb(255, 0, 0);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.auth-form button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.dark-shader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: none;
+  backdrop-filter: blur(10px);
+}
+
+.dark-shader.open {
+  display: block;
+}
+
+.logout-btn {
+  margin-left: 40px;
+}
+
+button {
+  background-color: #000;
+}
