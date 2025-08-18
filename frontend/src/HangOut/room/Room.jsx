@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./room.css";
 import { useParams } from "react-router-dom";
 import wsService from "@/utils/ws";
 import apiService from "@/utils/api";
+import EmojiPicker from "emoji-picker-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
+import "./room.css";
 
 function Room() {
   const { room_token } = useParams();
   const [cbInput, setCbInput] = useState("");
   const [cbMessages, setCbMessages] = useState([]);
+  const [showPicker, setShowPicker] = useState(false); // New state for emoji picker
   const cbListRef = useRef(null);
   const socketRef = useRef(null);
   const myChannelNameRef = useRef(null);
@@ -123,6 +127,12 @@ function Room() {
 
     socketRef.current.send(JSON.stringify({ message: text }));
     setCbInput("");
+    setShowPicker(false); // Close picker after sending
+  }
+
+  function onEmojiClick(emojiObject) {
+    setCbInput((prevInput) => prevInput + emojiObject.emoji);
+    setShowPicker(false); // Close picker after selection
   }
 
   function onCbKeyDown(e) {
@@ -130,6 +140,10 @@ function Room() {
       e.preventDefault();
       handleSend();
     }
+  }
+
+  function toggleEmojiPicker() {
+    setShowPicker((prev) => !prev);
   }
 
   return (
@@ -164,9 +178,17 @@ function Room() {
               onKeyDown={onCbKeyDown}
               rows={1}
             />
+            <button className="emoji-button" onClick={toggleEmojiPicker}>
+              <FontAwesomeIcon icon={faFaceSmile} />
+            </button>
             <button className="cb-send" onClick={handleSend}>
               Send
             </button>
+            {showPicker && (
+              <div className="emoji-picker-container">
+                <EmojiPicker onEmojiClick={onEmojiClick} width="100%" />
+              </div>
+            )}
           </div>
         </aside>
       </div>
