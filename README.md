@@ -94,7 +94,7 @@ python manage.py createsuperuser
 #### Run Django Server
 
 ```bash
-python manage.py runserver
+uvicorn SmallJobs.asgi:application --host 0.0.0.0 --port 8000
 ```
 
 The backend will be available at `http://localhost:8000`
