@@ -10,3 +10,14 @@ class HangOut_Room(models.Model):
 
     class Meta:
         db_table = 'HangOut_Room'
+
+
+class Message(models.Model):
+    room = models.ForeignKey(HangOut_Room, on_delete=models.CASCADE, related_name='messages')
+    sender_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'HangOut_Message'
+        ordering = ['timestamp']

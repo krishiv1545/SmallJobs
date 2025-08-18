@@ -1,4 +1,3 @@
-// API utility for making requests to Django backend
 const API_BASE_URL = "/api"; // Always go through Vite proxy in dev and same-origin in prod
 
 class ApiService {

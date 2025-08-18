@@ -61,18 +61,18 @@
   flex-direction: column;
   gap: 0;
   z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
-.cb-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 4px;
+.cb-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px;
 }
 
 .cb-messages {
@@ -102,18 +102,19 @@
   max-width: 80%;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.18);
+
   color: #fff;
 }
 
 .cb-row.out .cb-bubble {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .cb-text {
-  margin: 0 0 4px 0;
+  /* margin: 0 0 4px 0; */
   line-height: 1.35;
 }
 .cb-time {
@@ -137,6 +138,12 @@
   background: rgba(255, 255, 255, 0.25);
   color: #fff;
   min-height: 40px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.cb-input::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .cb-send {

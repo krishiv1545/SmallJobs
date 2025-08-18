@@ -3,3 +3,7 @@ django-environ
 Django
 requests
 psycopg2-binary
+channels
+daphne
+# cant decide X_X
+uvicorn
