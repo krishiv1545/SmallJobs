@@ -127,6 +127,203 @@
   gap: 8px;
   padding: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative; /* Add this for positioning the emoji picker */
+}
+
+.cb-input {
+  flex: 1;
+  resize: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  min-height: 40px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.cb-input::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cb-send {
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(57, 107, 255, 0.9);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Emoji Button Styling */
+.emoji-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem; /* Adjust size as needed */
+  color: #fff; /* White color to match existing theme */
+  padding: 0 5px;
+  align-self: center; /* Align with input field */
+  transition: color 0.2s ease-in-out;
+}
+
+.emoji-button:hover {
+  color: #a0c4ff; /* Lighter blue on hover */
+}
+
+/* Emoji Picker Container Styling */
+.emoji-picker-container {
+  position: absolute;
+  bottom: 60px; /* Position above the compose area */
+  left: 10px;
+  z-index: 1001; /* Ensure it appears above other elements */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Optional: Adjustments for the picker itself if needed */
+.epr-emoji-picker {
+  border-radius: 8px;
+}
+
+/* Style for emojis displayed in messages */
+.cb-text img {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.room-body {
+  padding: 160px;
+  color: #fff;
+  background-color: #dcdcdc;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-body::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 0, 0, 0.7) 20%,
+    rgba(0, 150, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.7) 48%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.7) 52%,
+    rgba(0, 150, 255, 0.7) 60%,
+    rgba(255, 0, 0, 0.7) 80%,
+    transparent 100%
+  );
+  filter: blur(50px);
+  opacity: 0.5;
+  transform: translateX(0);
+  animation: pan-streaks 20s linear infinite;
+  pointer-events: none;
+  z-index: -10;
+}
+
+.room-shader {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -5000;
+  backdrop-filter: blur(10px);
+}
+
+/* Chatbot (right-docked, glassmorphic) */
+.cb-pane {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  width: 360px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.cb-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px;
+}
+
+.cb-messages {
+  padding: 12px;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.cb-messages::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cb-row {
+  display: flex;
+  margin: 6px 0;
+}
+.cb-row.in {
+  justify-content: flex-start;
+}
+.cb-row.out {
+  justify-content: flex-end;
+}
+
+.cb-bubble {
+  max-width: 80%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: #fff;
+}
+
+.cb-row.out .cb-bubble {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cb-text {
+  /* margin: 0 0 4px 0; */
+  line-height: 1.35;
+}
+.cb-time {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.cb-compose {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .cb-input {
