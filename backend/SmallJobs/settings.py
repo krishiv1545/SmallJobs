@@ -86,16 +86,31 @@ WSGI_APPLICATION = 'SmallJobs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
+    "default": env.db(
+        "DATABASE_URL",
+        default="postgresql://localhost:5432/postgres"
+    )
 }
+
+# Keep persistent connections to reduce Neon cold starts
+DATABASES["default"]["CONN_MAX_AGE"] = 600
+
+# Ensure SSL and channel binding are honored/forced
+DATABASES["default"].setdefault("OPTIONS", {})
+DATABASES["default"]["OPTIONS"].setdefault("sslmode", "require")
+DATABASES["default"]["OPTIONS"].setdefault("channel_binding", "require")
 
 
 # Password validation

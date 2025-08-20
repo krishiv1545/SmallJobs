@@ -1,11 +1,10 @@
 class WebSocketService {
   constructor() {
-    // Connect directly to Django backend in development
-    this.baseURL = "ws://localhost:8000/ws";
+    this.baseURL = import.meta.env.VITE_DJANGO_BASE_WS_URL;
   }
 
   connect(path) {
-    return new WebSocket(`${this.baseURL}${path}`);
+    return new WebSocket(`${this.baseURL.replace(/\/$/, "")}${path}`);
   }
 }
 
