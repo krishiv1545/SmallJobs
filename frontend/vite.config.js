@@ -3,7 +3,10 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig(({ mode }) => {
-  const apiTarget = import.meta.env.VITE_DJANGO_BASE_URL;
+  // load env variables for the current mode
+  const env = loadEnv(mode, process.cwd(), "");
+
+  const apiTarget = env.VITE_DJANGO_BASE_URL;
 
   return {
     plugins: [react()],
