@@ -1,11 +1,13 @@
+import { loadEnv } from "vite";
+
 class WebSocketService {
   constructor() {
-    // Connect directly to Django backend in development
-    this.baseURL = "ws://localhost:8000/ws";
+    const env = loadEnv(import.meta.env.MODE, process.cwd(), "");
+    this.baseURL = env.VITE_DJANGO_BASE_WS_URL;
   }
 
   connect(path) {
-    return new WebSocket(`${this.baseURL}${path}`);
+    return new WebSocket(`${this.baseURL.replace(/\/$/, "")}${path}`);
   }
 }
 
