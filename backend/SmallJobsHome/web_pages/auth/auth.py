@@ -22,18 +22,21 @@ def signup(request):
         user = SmallJobsUser.objects.create_user(
             fullname=fullname, email=email, password=password
         )
-        
+
         # Auto-login after signup
         auth_login(request, user)
-        
-        return JsonResponse({
-            "message": "User created successfully!",
-            "user": {
-                "fullname": user.fullname,
-                "email": user.email,
-                "user_type": user.user_type,
-            }
-        }, status=201)
+
+        return JsonResponse(
+            {
+                "message": "User created successfully!",
+                "user": {
+                    "fullname": user.fullname,
+                    "email": user.email,
+                    "user_type": user.user_type,
+                },
+            },
+            status=201,
+        )
 
 
 @csrf_exempt
@@ -50,18 +53,20 @@ def login(request):
             auth_login(request, user)
             print(f"Session ID after login: {request.session.session_key}")
             print(f"User authenticated after login: {request.user.is_authenticated}")
-            return JsonResponse({
-                "message": "Login successful",
-                "user": {
-                    "fullname": user.fullname,
-                    "email": user.email,
-                    "user_type": user.user_type,
+            return JsonResponse(
+                {
+                    "message": "Login successful",
+                    "user": {
+                        "fullname": user.fullname,
+                        "email": user.email,
+                        "user_type": user.user_type,
+                    },
                 }
-            })
+            )
         else:
             print("=== User Not Authenticated ===")
             return JsonResponse({"error": "Invalid credentials"}, status=401)
-        
+
 
 @csrf_exempt
 def logout(request):
@@ -81,14 +86,16 @@ def me(request):
     print(f"User: {request.user}")
     print(f"Session ID: {request.session.session_key}")
     print(f"Cookies: {request.COOKIES}")
-    
+
     if request.user.is_authenticated:
         user = request.user
-        return JsonResponse({
-            "fullname": user.fullname,
-            "email": user.email,
-            "user_type": user.user_type,
-        })
+        return JsonResponse(
+            {
+                "fullname": user.fullname,
+                "email": user.email,
+                "user_type": user.user_type,
+            }
+        )
     else:
         return JsonResponse({"error": "Not logged in"}, status=401)
 

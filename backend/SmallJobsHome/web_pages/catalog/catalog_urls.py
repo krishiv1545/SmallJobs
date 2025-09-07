@@ -3,5 +3,5 @@ from django.urls import path
 from .catalog import catalog_view
 
 urlpatterns = [
-    path('', catalog_view, name='catalog'),
+    path("", catalog_view, name="catalog"),
 ]

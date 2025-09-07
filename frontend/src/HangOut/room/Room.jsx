@@ -35,7 +35,7 @@ function Room() {
         return;
       }
       if (cancelled) return;
-      const socket = wsService.connect(`/room/${room_token}/`);
+      const socket = wsService.connect(`/ws/room/${room_token}/`);
       socketRef.current = socket;
 
       socket.onopen = () => {

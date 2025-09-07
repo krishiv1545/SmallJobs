@@ -38,19 +38,27 @@ class RoomConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
         await self.accept()
 
-        await self.send(text_data=json.dumps({
-            "type": "connection_established",
-            "channel_name": self.channel_name,
-            "user_id": self.user.id,
-        }))
+        await self.send(
+            text_data=json.dumps(
+                {
+                    "type": "connection_established",
+                    "channel_name": self.channel_name,
+                    "user_id": self.user.id,
+                }
+            )
+        )
 
         # Send chat history (last 50)
         history = await self.get_history()
         if history:
-            await self.send(text_data=json.dumps({
-                "type": "chat_history",
-                "messages": history,
-            }))
+            await self.send(
+                text_data=json.dumps(
+                    {
+                        "type": "chat_history",
+                        "messages": history,
+                    }
+                )
+            )
 
     async def disconnect(self, close_code):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
@@ -76,12 +84,16 @@ class RoomConsumer(AsyncWebsocketConsumer):
         )
 
     async def chat_message(self, event):
-        await self.send(text_data=json.dumps({
-            "type": "chat_message",
-            "message": event["message"],
-            "sender_id": event.get("sender_id"),
-            "sender_channel_name": event.get("sender_channel_name"),
-        }))
+        await self.send(
+            text_data=json.dumps(
+                {
+                    "type": "chat_message",
+                    "message": event["message"],
+                    "sender_id": event.get("sender_id"),
+                    "sender_channel_name": event.get("sender_channel_name"),
+                }
+            )
+        )
 
     @database_sync_to_async
     def get_room(self):
@@ -89,7 +101,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def save_message(self, sender_user_id: int, content: str):
-        Message.objects.create(room=self.room, sender_user_id=sender_user_id, content=content)
+        Message.objects.create(
+            room=self.room, sender_user_id=sender_user_id, content=content
+        )
 
     @database_sync_to_async
     def get_history(self):

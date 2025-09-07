@@ -4,13 +4,12 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('HangOut', '0003_chatmessage'),
+        ("HangOut", "0003_chatmessage"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='ChatMessage',
+            name="ChatMessage",
         ),
     ]
